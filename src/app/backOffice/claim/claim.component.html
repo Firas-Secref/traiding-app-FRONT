@@ -1,0 +1,147 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+            <div class="card mb-4">
+                <div class="card-body">
+
+
+
+                    <div class="card shadow my-4">
+                        <div class="card-header py-2 d-flex align-items-center">
+                           <h6 class="m-0 font-weight-bold "  style="font-size: 25px; margin-left:455px;color:#2C3E50">Claims</h6>
+
+
+
+
+                        </div>
+
+                <div class="card-body">
+                    <form>
+                        <div class="input-group input-group-dynamic mb-8">
+                          <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
+                          <input class="form-control" id="search" placeholder="Search" type="text" [(ngModel)]="searchQuery" [ngModelOptions]="{standalone: true}" (input)="performSearch()">
+                        </div>
+                      </form>
+                      <div class="card-body">
+                        <div  class="table-responsive">
+                            <table *ngIf="searchQuery" class=" table-bordered" id="Table" width="100%" cellspacing="0" >
+                <thead>
+                    <tr>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;width: 100px;">date Claim</th>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;">type</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">description</th>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;">User</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">Attach</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">Reftran</th>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;">Reference</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;width: 130px">date traitement</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let claim of searchResults">
+
+                        <td>{{claim.dateClaim}}</td>
+
+                        <td>{{claim?.type}}</td>
+                        <td>{{claim?.descClaim}}</td>
+
+                        <td>{{claim?.userc?.userName}}</td>
+                        <td><img alt="" src="data:image/jpeg;base64,{{claim?.attachClaim}}" style="width: 100px;height: 100px;"></td>
+
+                        <td>{{claim?.refTR}}</td>
+                        <td>{{claim?.refclaim}}</td>
+                        <td>{{claim?.dateTraite}}</td>
+                        <td><button (click)="modifyClaim(claim?.idClaim,true)" class="btn btn-primary rounded with-icon"
+                            [class.btn-danger]="isDateEmpty(claim.dateTraite)"
+                            [class.btn-success]="!isDateEmpty(claim.dateTraite)">
+                            <i class="far fa-edit"></i>
+                        </button>
+                            </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+                    <div class="card-body">
+                        <div  class="table-responsive">
+                            <table *ngIf="!searchQuery" class="table-bordered" id="userTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;width: 100px;">date Claim</th>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;">type</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">description</th>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;">User</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">Attach</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">Reftran</th>
+
+                        <th style="background-color: #2C3E50;color: aliceblue;">Reference</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;width: 130px">date traitement</th>
+                        <th style="background-color: #2C3E50;color: aliceblue;">action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor ="let c of data?.slice((currentPage - 1) * pageSize, currentPage * pageSize)">
+                        <td>{{c?.dateClaim}}</td>
+
+                        <td>{{c?.type}}</td>
+                        <td>{{c?.descClaim}}</td>
+                        <td>{{c?.userc?.userName}}</td>
+                        <td>
+                            <a href="data:image/jpeg;base64,{{c.attachClaim}}">
+                                <img alt="" src="data:image/jpeg;base64,{{c.attachClaim}}" style="width: 100px;height: 100px;">
+                            </a>
+                        </td>
+
+                        <td>{{c.refTR}}</td>
+                        <td>{{c.refclaim}}</td>
+                        <td>{{c.dateTraite}}</td>
+                        <td>
+                            <button (click)="modifyClaim(c.idClaim,true)" class="btn btn-primary rounded with-icon"
+                                [class.btn-danger]="isDateEmpty(c.dateTraite)"
+                                [class.btn-success]="!isDateEmpty(c.dateTraite)"
+                                [disabled]="!isDateEmpty(c.dateTraite)">
+                                <i class="far fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+    <div>
+            <button class="btn btn-primary rounded with-icon" style="background-color: #2E4053;" [disabled]="currentPage == 1"  (click)="prevPage()"><-</button>
+  <button class="btn btn-primary rounded with-icon" style="background-color: #283747;" [disabled]="currentPage == 3" (click)="nextPage()">-></button>
+        </div>
+</div>
+
+            <br>
+<button  *ngIf="!searchQuery" (click)="print()" class="btn btn-primary rounded with-icon" style="margin-left: 410px;background-color: #283747;" >
+            Export PDF</button>
+        </div>
+
+    </div>
+
+
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+

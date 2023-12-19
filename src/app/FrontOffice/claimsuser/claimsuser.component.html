@@ -1,0 +1,36 @@
+<br>
+<h2 style="margin-left: 570px;">Historic of claims :</h2>
+<div  class="table-responsive">
+    <table  class=" table-bordered" id="Table"  width="50%" cellspacing="0" style="margin-left: 350px;">
+<thead>
+<tr>
+
+<th style="background-color: #2C3E50;color: aliceblue;">Date Claim</th>
+<th style="background-color: #2C3E50;color: aliceblue;">Type</th>
+
+<th style="background-color: #2C3E50;color: aliceblue;">Description</th>
+
+<th style="background-color: #2C3E50;color: aliceblue;">Etat</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let claim of claimsList">
+
+<td>{{claim.dateClaim}}</td>
+
+<td>{{claim.type}}</td>
+<td>{{claim.descClaim}}</td>
+
+
+<td>
+    <span *ngIf="claim.traiteClaim; else inProgress">Processed</span>
+    <ng-template #inProgress>Unprocessed</ng-template>
+</td>
+
+
+
+
+</tbody>
+</table>
+</div>
+

@@ -1,0 +1,21 @@
+.container0 {
+  background-color: #131722;
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically in the center */
+  
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-left: 620px;
+}
+
+.tradingview-container {
+  display: flex; /* Align widgets horizontally */
+  gap: 200px;
+  margin-left: 20px;
+   /* Add some space between widgets if needed */
+}

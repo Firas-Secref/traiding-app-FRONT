@@ -1,0 +1,230 @@
+
+<br>
+
+
+
+
+
+<div class="tradingview-widget-container2" #tradingviewContainer></div>
+<div class="container1">
+
+<div class="bodyu" style="width: 500px;border-right: 1px solid #2C3E50;">
+    <h4 style="margin-left: 35%;">Convert from USD to TND</h4>
+    <div style="display: flex; align-items: center; margin-left: 25%;">
+        <label for="amountInUSD" style="margin-right: 10px;">Amount in USD:</label>
+        <input type="number" id="amountInUSD" [(ngModel)]="amountInUSD"  />
+        <button (click)="convertUSDToTND()"  > <img src="assets/front/images/currency.jpg"style="height:25px ;width:30px;"></button>
+        <div *ngIf="amountInTND !== undefined" style="margin-left: 10px;">
+          <p>{{ amountInTND }}TND</p>
+        </div>
+      </div>
+    <br>
+    <h2 style="font-weight: bold;margin-left: 30%;">Equities Heatmap</h2>
+    <div class="tradingview-widget-container" #tradingviewContainer style="margin-left: 7%;"></div>
+    <br>
+    <h2 style="font-weight: bold;margin-left: 20%;">Cryptocurrencies Heatmap</h2>
+    <div class="tradingview-widget-container1" #tradingviewContainer style="margin-left: 7%;"></div>
+
+                                
+                </div>  
+
+                
+                
+
+
+
+
+
+<div class="sidebar">
+    
+<p style="font-weight: bold;margin-left: 38%;">TOP Commodities</p>
+    
+    <div  class="table-responsive">
+        <table  class=" table-bordered" id="Table"  width="90%" cellspacing="0" >
+    <thead>
+    <tr>
+    
+    <th style="background-color: #2C3E50;color: aliceblue;">Nom</th>
+    <th style="background-color: #2C3E50;color: aliceblue;">Cours</th>
+    
+    <th style="background-color: #2C3E50;color: aliceblue;">Variation</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of tableData">
+    
+        <td>{{ row.column1 }}</td>
+        <td>{{ row.column8 }}</td>
+        <td style="color: {{ row.column3.includes('+') ? 'green' : (row.column3.includes('-') ? 'red' : 'black') }}">{{ row.column3 }}</td>
+    
+    </tbody>
+    </table>
+    
+    <a routerLink="/user/news"style="margin-left: 35%;">view more commodities</a>
+</div>
+<br>
+<p style="font-weight: bold;margin-left: 38%;">TOP Cryptocurrencies</p>
+    
+    <div  class="table-responsive">
+        <table  class=" table-bordered" id="Table"  width="90%" cellspacing="0" >
+    <thead>
+    <tr>
+    
+    <th style="background-color: #2C3E50;color: aliceblue;">Nom</th>
+    <th style="background-color: #2C3E50;color: aliceblue;">Cours</th>
+    
+    <th style="background-color: #2C3E50;color: aliceblue;">Variation</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of tableData1">
+    
+        <td>{{ row.column1 }}</td>
+        <td>{{ row.column8 }}</td>
+        <td style="color: {{ row.column3.includes('+') ? 'green' : (row.column3.includes('-') ? 'red' : 'black') }}">{{ row.column3 }}</td>
+    
+    </tbody>
+    </table>
+    
+    <a routerLink="/user/newsCrypto"style="margin-left: 33%;">view more Cryptocurrencies</a>
+</div>
+<br>
+<p style="font-weight: bold;margin-left: 40%;">TOP Equities</p>
+    
+    <div  class="table-responsive">
+        <table  class=" table-bordered" id="Table"  width="90%" cellspacing="0" >
+    <thead>
+    <tr>
+    
+    <th style="background-color: #2C3E50;color: aliceblue;">Nom</th>
+    <th style="background-color: #2C3E50;color: aliceblue;width: 200px;">Cours</th>
+    
+    <th style="background-color: #2C3E50;color: aliceblue;">Variation 1Jan</th>
+    
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of tableData2">
+    
+        <td>{{ row.column1 }}</td>
+        <td>{{ row.column8 }}</td>
+        <td style="color: {{ row.column4.includes('+') ? 'green' : (row.column4.includes('-') ? 'red' : 'black') }}">{{ row.column4 }}</td>
+    
+    </tbody>
+    </table>
+    
+    <a routerLink="/user/newsAction" style="margin-left: 40%;">view more equities</a>
+    
+
+</div>
+<br>
+<div style="margin-left: 20px;" >
+    <select  (change)="onSymbolChange($event)">
+      <option value="XAUUSD">OR</option>
+      <option value="USOIL">PÉTROLE WTI	</option>
+      <option value="BTCUSD">BITCOIN</option>
+      <option value="ETHUSD">ETHEREUM</option>
+      <option value="NASDAQ:AAPL">Apple</option>
+      <option value="NASDAQ:MSFT">Microsoft Corporation</option>
+      <option value="TNDUSD">indice TND/ USD</option>
+     
+      
+      <!-- Add more options for other equities as needed -->
+    </select>
+  </div>
+
+  <div class="tradingview-widget-container" style="height: 450px; width: 500px; margin-left: 20px;">
+    <div id="tradingview_c976b" style="height: calc(100% - 32px); width: 100%"></div>
+    <div class="tradingview-widget-copyright"></div>
+  </div>
+  
+</div>
+
+</div>
+<br>
+<section class="features-style1-area">
+    <div class="container">
+        <div class="sec-title text-center">
+            <h2>Investing is
+                Even better now</h2>
+            <div class="sub-title">
+                <p>Committed to helping our customers succeed.</p>
+            </div>
+        </div>
+        <div class="features-style1-content">
+            <ul class="clearfix">
+                <!--Start Single Features Style1 Box-->
+                <li>
+                    <div class="single-features-style1-box">
+                        <div class="shape-left">
+                            <img src="assets/front/images/shapes/shape-1.png" alt="">
+                        </div>
+                        <div class="shape-bottom">
+                            <img src="assets/front/images/shapes/shape-2.png" alt="">
+                        </div>
+                        <div class="counting-box">
+                            <div class="counting-box-bg"
+                                style="background-image: url(assets/front/images/shapes/counting-box-bg.png);"></div>
+                            <h3>01</h3>
+                        </div>
+                        <div class="text-box">
+                            <h4>Trade</h4>
+                            <h3>Trade any of 100 assets and stocks. Use technical analysis and trade the news</h3>
+                            
+                           
+                        </div>
+                    </div>
+                </li>
+                <!--End Single Features Style1 Box-->
+                <!--Start Single Features Style1 Box-->
+                <li>
+                    <div class="single-features-style1-box">
+                        <div class="shape-left">
+                            <img src="assets/front/images/shapes/shape-1.png" alt="">
+                        </div>
+                        <div class="shape-bottom">
+                            <img src="assets/front/images/shapes/shape-2.png" alt="">
+                        </div>
+                        <div class="counting-box">
+                            <div class="counting-box-bg"
+                                style="background-image: url(assets/front/images/shapes/counting-box-bg.png);"></div>
+                            <h3>02</h3>
+                        </div>
+                        <div class="text-box">
+                            <h4>Exclusive training </h4>
+                            <h3>Successful strategies </h3>
+                            
+                            
+                        </div>
+                    </div>
+                </li>
+                <!--End Single Features Style1 Box-->
+                <!--Start Single Features Style1 Box-->
+                <li>
+                    <div class="single-features-style1-box">
+                        <div class="shape-left">
+                            <img src="assets/front/images/shapes/shape-1.png" alt="">
+                        </div>
+                        <div class="shape-bottom">
+                            <img src="assets/front/images/shapes/shape-2.png" alt="">
+                        </div>
+                        <div class="counting-box">
+                            <div class="counting-box-bg"
+                                style="background-image: url(assets/front/images/shapes/counting-box-bg.png);"></div>
+                            <h3>03</h3>
+                        </div>
+                        <div class="text-box">
+                            <h4>Trading in TND</h4>
+                            <h3>Deposit and withdraw in TND</h3>
+                            
+                            
+                        </div>
+                    </div>
+                </li>
+                <!--End Single Features Style1 Box-->
+            </ul>
+        </div>
+    </div>
+  </section>

@@ -1,0 +1,88 @@
+<br>
+<div class="container1">
+
+  <div class="bodyu" style="width: 500px; border-right: 1px solid #2C3E50;">
+<h2 style="margin-left: 350px;">Cryptocurrencies</h2>
+<div style="margin-left: 50px;">
+    <select  (change)="onSymbolChange($event)">
+      <option value="BTCUSD">BITCOIN</option>
+      <option value="ETHUSD">ETHEREUM</option>
+      <option value="BNBUSD">BINANCE COIN</option>
+      <option value="XRPUSD">RIPPLE</option>
+      <option value="ADAUSD">CARDANO</option>
+      <option value="SOLUSD">SOLANA </option>
+      <option value="ARBUSD">ARBITRUM </option>
+      <option value="APTUSD">APTOS</option>
+      <option value="DOGEUSD">DOGECOIN</option>
+      <option value="STETHUSD">STAKED ETHER</option>
+      
+      
+      <!-- Add more options for other equities as needed -->
+    </select>
+  </div>
+  
+  <div class="tradingview-widget-container" style="height: 450px; width: 850px; margin-left: 50px;">
+    <div id="tradingview_c976b" style="height: calc(100% - 32px); width: 100%"></div>
+    <div class="tradingview-widget-copyright"></div>
+  </div>
+
+<div  class="table-responsive">
+    <table  class=" table-bordered" id="Table"  width="90%" cellspacing="0" style="margin-left: 50px;">
+<thead>
+<tr>
+
+<th style="background-color: #2C3E50;color: aliceblue;">Nom</th>
+<th style="background-color: #2C3E50;color: aliceblue;width: 150px;">Cours en USD</th>
+<th style="background-color: #2C3E50;color: aliceblue;width: 170px;">Cours en TND</th>
+<th style="background-color: #2C3E50;color: aliceblue;">Variation</th>
+
+
+<th style="background-color: #2C3E50;color: aliceblue;">Variation 1 Janvier</th>
+<th style="background-color: #2C3E50;color: aliceblue;">Capi. (M$)</th>
+
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let row of tableData">
+
+    <td>{{ row.column1 }}</td>
+    <td>{{ row.column2 }}</td>
+    <td>{{ row.column8 }}</td>
+    <td style="color: {{ row.column3.includes('+') ? 'green' : (row.column3.includes('-') ? 'red' : 'black') }}">{{ row.column3 }}</td>
+    <td style="color: {{ row.column4.includes('+') ? 'green' : (row.column4.includes('-') ? 'red' : 'black') }}">{{ row.column4 }}</td>
+    <td>{{ row.column5 }}</td>
+    
+    
+    
+
+</tbody>
+</table>
+</div>
+</div>
+<hr style="margin: 0; border-top: 1px solid #000000;">
+<div class="sidebar">
+
+
+  <p style="font-weight: bold;margin-left: 100px;">Latest Cryptocurrencies news</p>
+      <div  class="table-responsive">
+        <table  class=" table-bordered" >
+    
+    <tbody>
+    <tr *ngFor="let row of tableData1">
+    
+        <td>{{ row.column0 }}</td>
+        <td>{{ row.column1 }}</td>
+        
+        
+        
+        
+    
+    </tbody>
+    </table>
+    </div>
+  
+  
+  
+  
+  
+    </div>

@@ -1,0 +1,245 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<div class="card mb-4">
+  <div class="card-body">
+
+
+
+    <div class="card shadow my-4">
+      <div class="card-header py-2 d-flex justify-content-between">
+        <h6 class="m-0 font-weight-bold "  style="font-size: 25px; margin-left:455px;color:#2C3E50">Cours</h6>
+        <button type="button" class="btn" style="background-color: #4e5d74; color: white" data-toggle="modal" data-target="#exampleModal" (click)="courseFormSubmitted = false">Ajouter Cours</button>
+      </div>
+
+      <div class="card-body">
+        <form>
+          <div class="input-group input-group-dynamic mb-8">
+            <span class="input-group-text"><i class="fas fa-search" aria-hidden="true"></i></span>
+            <input class="form-control" id="search" placeholder="Search" type="text" >
+          </div>
+        </form>
+        <div class="card-body">
+          <div  class="table-responsive">
+            <div class="card-body">
+              <div class="table-responsive" style="display: flex; flex-direction: row; justify-content: space-evenly; width: 100%; flex-wrap: wrap">
+
+                <div *ngFor="let course of availableCourses" class="card" style="width: 30%; margin-bottom: 1.5rem">
+
+                  <video [src]="'data:video/mp4;base64,'+course?.courseFile" *ngIf="course?.fileType !== 'pdf'" height="140" controls></video> <br/>
+                  <img *ngIf="course?.fileType === 'pdf'" (click)="viewFile(course?.courseFile)" style="cursor: pointer" src="{{course?.fileType === 'pdf' && '/assets/front/images/pdf.png'}}" alt="Card image cap" >
+                  <div class="card-body">
+                    <h5 class="card-title">{{course?.courseName}}</h5>
+                    <p class="card-text">{{course?.description}}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Level: </b> {{course?.level}}</li>
+                    <li class="list-group-item"><b>Price: </b>{{course?.price}} DT</li>
+                  </ul>
+                  <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between">
+                    <button *ngIf="!course.quiz2" type="button" class="btn" style="background-color: #4e5d74; color: white" data-toggle="modal" data-target="#exampleModal2" (click)="selectCourse(course.id)">Crée un Quiz</button>
+                    <button *ngIf="course.quiz2" type="button" class="btn" style="background-color: #4e5d74; color: white" data-toggle="modal" data-target="#exampleModal3" (click)="viewQuiz(course)">View quiz</button>
+                    <button (click)="deleteCourse(course.id)" class="btn btn-danger rounded with-icon">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <br>
+                <div>
+                </div>
+              </div>
+
+              <br>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!--course form-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Add new Course</h5>
+            <button type="button" class="close" i data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="courseForm">
+            <div *ngIf="!courseForm.valid && courseFormSubmitted" style="color: red; text-align: center">Veuiller remplir tout les champs obligatoire</div>
+              <br>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >Course name</span>
+                </div>
+                <input formControlName="courseName" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01" (change)="onFileChanged($event)">
+                  <label class="custom-file-label" for="inputGroupFile01">{{courseFile ? courseFile.name : 'choose file'}}</label>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Course description</span>
+                </div>
+                <textarea formControlName="description" class="form-control" aria-label="With textarea"></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >Course level</span>
+                </div>
+                <input formControlName="level" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">DT</span>
+                </div>
+                <input type="number" formControlName="price" class="form-control">
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="dismissAddModal" class="btn btn-dark" data-dismiss="modal">Close</button>
+            <button type="button" class="btn" style="background-color: #4e5d74; color: white" (click)="submitCourse()">Ajouter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--    quiz form-->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ajouter un Quiz</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="quizForm">
+              <div *ngIf="!quizForm.valid && quizFormSubmitted" style="color: red; text-align: center">Veuiller remplir tout les champs obligatoire</div>
+
+              <div formArrayName="rubricQuestions" *ngFor="let rq of allRubricQuestions.controls; let i = index">
+                <div [formGroupName]="i">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >Question #{{i+1}}</span>
+                    </div>
+                    <input formControlName="question" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >Proposition 1</span>
+                    </div>
+                    <input formControlName="answer1" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >Proposition 2</span>
+                    </div>
+                    <input formControlName="answer2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >Proposition 3</span>
+                    </div>
+                    <input formControlName="answer3" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >Proposition 4</span>
+                    </div>
+                    <input formControlName="answer4" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >Solution</span>
+                    </div>
+                    <input formControlName="correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                  <button type="button" class="btn" style="background-color: #4e5d74; color: white" (click)="addRubricQuestion()">Ajouter une question</button>
+                  <br><hr>
+
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeQuizModal" class="btn btn-dark" data-dismiss="modal">Close</button>
+            <button type="button" class="btn" style="background-color: #4e5d74; color: white" (click)="submitQuiz()" >Save quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--   view quiz-->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel3">Quiz</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div *ngFor="let rq of selectedQuiz?.rubricQuestions; let i = index" style="font-size: 17px; margin-left: 1rem" class="form-check">
+              <p>Question #{{i+1}}: {{rq.question}}</p>
+
+              <label class="form-check-label" >
+                <input  class="form-check-input" type="radio" name="answer{{i}}"   >
+                {{rq?.answer1}}
+              </label><br>
+              <label class="form-check-label" >
+                <input class="form-check-input" type="radio" name="answer{{i}}"   >
+                {{rq?.answer2}}
+              </label><br>
+              <label class="form-check-label" >
+                <input class="form-check-input" type="radio" name="answer{{i}}"   >
+                {{rq?.answer3}}
+              </label><br>
+              <label class="form-check-label" >
+                <input  class="form-check-input" type="radio" name="answer{{i}}"  >
+                {{rq?.answer4}}
+              </label><br>
+              <hr>
+
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" style="background-color: #4e5d74; color: white" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  </div></div>

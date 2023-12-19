@@ -1,0 +1,126 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #131722; border-bottom: 1px solid white;">
+
+  <a routerLink="/user">
+    <img src="assets/front/images/default.png" style="height: 50px; width: 75px; margin-left: 50px;" alt="Awesome Logo" title="">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="color: white; margin-left: 250px;">
+      <li class="nav-item" style="margin-right: 20px;">
+        Gold : 0.1
+      </li>
+      <li class="nav-item" style="margin-right: 20px;">
+        OIL: 10
+      </li>
+      <li class="nav-item" style="margin-right: 20px;">
+        Apple equities : 2
+      </li>
+      <li class="nav-item" style="margin-right: 20px;">
+        Microsof equities: 10
+      </li>
+      <li class="nav-item" style="margin-right: 20px;">
+        Bitcoin : 0.01
+      </li>
+      <li class="nav-item" style="margin-right: 20px;">
+        Ethereum: 10
+      </li>
+      <li class="nav-item" style="margin-right: 20px;">
+        Balance : 200 TND <br>
+      </li>
+    </ul>
+    <img alt="Profile Picture" class="circular-image" src="data:image/jpeg;base64,{{currentUser?.userPhoto}}" style="width: 40px; height: 40px;">
+  </div>
+</nav>
+    <div class="container1" style="background-color: #131722;">
+
+    <div class="sidebar"style="height:360px;background-color:#131722;">
+    <br>
+        <div  class="table-responsive">
+            <table  class=" table-bordered" id="Table"  width="100%" cellspacing="0" >
+        <thead>
+        <tr>
+
+        <th style="background-color: #131722;;color: white;">Nom</th>
+        <th style="background-color: #131722;;color: white;">Cours</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of tableData">
+
+          <td (click)="onSymbolChange(row.column1)" style="cursor: pointer; background-color: #131722; color: white;">
+            {{ row.column1 }}
+          </td>
+            <td>{{ row.column8 }}</td>
+            <tr *ngFor="let row of tableData1">
+
+              <td (click)="onSymbolChange(row.column1)" style="cursor: pointer; background-color: #131722; color: white;">
+                {{ row.column1 }}
+              </td>
+                <td>{{ row.column8 }}</td>
+                <tr *ngFor="let row of tableData2">
+
+                  <td (click)="onSymbolChange(row.column1)" style="cursor: pointer; background-color: #131722; color: white;">
+                    {{ row.column1 }}
+                  </td>
+                    <td>{{ row.column8 }}</td>
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+    </div>
+    <div class="bodyu" style="background-color: #131722;">
+      <br>
+
+        <div class="tradingview-widget-container10" style="height: 364px; width: 920px; margin-left: 20px;">
+            <div id="tradingview_c976b" style="height: calc(100% - 32px); width: 100%"></div>
+            <div class="tradingview-widget-copyright"></div>
+          </div>
+
+
+
+
+
+
+
+    </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark "style="background-color: #131722;border-bottom: 1px solid white;border-top: 1px solid white;">
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav"style="color: white;margin-left: 500px;">
+            <li class="nav-item "style="margin-right: 20px;">
+              <a class="nav-link" routerLink="/trade">Technical analyse <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item"style="margin-right: 20px;">
+              <a class="nav-link" routerLink="/trade/orderbuy">Orders</a>
+            </li>
+            <li class="nav-item"style="margin-right: 20px;">
+              <a class="nav-link" routerLink="/trade/history">My history</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+      <div style="height: 550px;background-color: #131722;">
+        <br>
+      <router-outlet></router-outlet>
+    </div>
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #5D6D7E">Modify Password</h3></div>
+                <div class="card-body">
+                  
+<form (ngSubmit)="modifyPassword()">
+    
+       
+
+    <label>
+      
+      <input class="form-control" type="{{ showOldPassword ? 'text' : 'password' }}" placeholder="Enter your old Password" [(ngModel)]="oldPassword" name="oldPassword" />
+    <button class="show-password-button" type="button" (click)="showOldPassword = !showOldPassword"><i class="fa" [ngClass]="{ 'fas fa-eye': !showOldPassword,'fas fa-eye-slash': showOldPassword}"></i></button>
+    </label>
+  
+    <br >
+    <label>
+      <input class="form-control" [type]="shownewPassword ? 'text' : 'password'" placeholder="Enter your new Password" [(ngModel)]="newPassword" name="newPassword" />
+      <button class="show-password-button" type="button" (click)="shownewPassword = !shownewPassword">
+        <i class="fa" [ngClass]="{ 'fas fa-eye': !shownewPassword,'fas fa-eye-slash': shownewPassword}"></i>
+      </button>
+    </label>
+    
+    
+    <br >
+    <label>
+      
+        <input input class="form-control" type="{{ shownewPassword1 ? 'text' : 'password' }}" placeholder="Confirm New Password" [(ngModel)]="newPassword1" name="newPassword1"  />
+        <button class="show-password-button" type="button" (click)="shownewPassword1 = !shownewPassword1" ><i class="fa" [ngClass]="{ 'fas fa-eye': !shownewPassword1,'fas fa-eye-slash': shownewPassword1}"></i></button>
+      </label>
+    
+    <br >
+    <button class="btn btn-primary" type="submit" style="margin-left: 20px; background-color: #5D6D7E;">Modify Password</button>
+  </form>
+
+  
+</div>
+</div>
+</div>
+<br><br><br><br>

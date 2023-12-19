@@ -1,0 +1,11 @@
+
+  
+<div class="container0" style="background-color: #131722; width: 100%;">
+    <div class="tradingview-container" #tradingviewContainer></div>
+  </div>
+  <br><br>
+  <div class="pagination">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0" class="btn btn-primary rounded with-icon" style="background-color: #131722;"><-</button>
+    
+    <button (click)="changePage(currentPage + 1)" [disabled]="(currentPage + 1) * widgetsPerPage >= widgetsConfig.length"class="btn btn-primary rounded with-icon" style="background-color: #131722;">-></button>
+</div>

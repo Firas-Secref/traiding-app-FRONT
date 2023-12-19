@@ -1,0 +1,68 @@
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4" style="color: #5D6D7E">Create a Claim</h3></div>
+                <div class="card-body">
+<form (submit)="onSubmit()">
+    
+       
+    <label>
+        Type Claim:
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="typeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: white
+          ; color: black;" >
+            <span class="placeholder" style="background-color: white;color: white;" >..............</span>  {{ type }}                   
+          </button>
+          <div class="dropdown-menu" aria-labelledby="typeDropdown">
+            <a class="dropdown-item" (click)="type='Transaction'" style="color: rgb(0, 0, 0);">Transaction</a>
+            
+            <a class="dropdown-item" (click)="type='Account'" style="color: rgb(0, 0, 0);">Account</a>
+            <a class="dropdown-item" (click)="type='Other'" style="color: rgb(0, 0, 0);">Other</a>
+          </div>
+        </div>
+      </label>
+      
+      
+      <br><br >
+    <label>
+      Description:
+      <textarea class="form-control" [(ngModel)]="desc" name="desc" rows="4" required ></textarea>
+    </label>
+<br><br >
+     
+    <label *ngIf="type === 'Transaction'" > Transaction numero :
+      <select [(ngModel)]="t" (change)="onSelectChange($event)" *ngIf="integersList.length > 0">
+        <option *ngFor="let integer of integersList" [value]="integer">{{ integer }}</option>
+      </select>
+      </label>
+    
+    
+
+
+   <!-- <label>
+      Reference of Transaction:
+      <input input class="form-control" type="number" [(ngModel)]="idt" name="idt" />
+    </label>
+  -->
+    <br >
+    
+    
+    <br >
+    <label>
+        Attachement: </label><br ><br >
+        <input input  type="file" (change)="onFileSelected($event)"  />
+      
+  
+      <br >
+
+    <br ><br ><br >
+    <button class="btn btn-primary" type="submit" style="margin-left: 250px; background-color: #5D6D7E;">Submit</button>
+  </form>
+
+</div>
+</div>
+</div>
+</div>
+

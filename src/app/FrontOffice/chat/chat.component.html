@@ -1,0 +1,59 @@
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="card-body">
+        <div  class="table-responsive">
+          <div class="card-body">
+            <div class="table-responsive" style="display: flex; flex-direction: row; justify-content: space-evenly; width: 100%; flex-wrap: wrap">
+              <div class="col-md-8">
+                <div class="panel panel-default chat-widget">
+                  <div class="panel-heading" style="background-color: white">
+                    <h3 class="panel-title"><i class="fa fa-comments"></i> Chat with BOT</h3>
+                  </div>
+                  <hr>
+                  <div class="panel-body" *ngFor="let msg of allMessages">
+                    <div *ngIf="msg?.myMessage" class="message message-right">
+                      <div class="avatar">
+                        <img class="img-circle avatar" alt="chat avatar" src="assets/front/images/profile.png">
+                      </div>
+                      <div class="message-text-wrapper">
+                        <div class="message-text">
+                          {{msg?.myMessage}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="msg?.botMessage" class="message">
+                      <div class="avatar">
+                        <img class="img-circle avatar" alt="chat avatar" src="assets/front/images/img.png">
+                      </div>
+                      <div class="message-text-wrapper">
+                        <div class="message-text">
+                          {{msg?.botMessage}}
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <br>
+                  <div class="panel-footer">
+
+                    <div class="input-group" (keyup.enter)="sendMEssage()">
+                      <input type="text" placeholder="Press Enter" class="form-control primary" [(ngModel)]="chatMessage">
+                      <span class="input-group-btn">
+            <button class="btn" style="background-color: #4E5D74; color: white" type="button" (click)="sendMEssage()">Send</button>
+        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>

@@ -1,0 +1,77 @@
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ClaimService } from 'src/app/claim.service';
+
+@Component({
+  selector: 'app-financialnews2',
+  templateUrl: './financialnews2.component.html',
+  styleUrls: ['./financialnews2.component.css']
+})
+export class Financialnews2Component implements OnInit, AfterViewInit {
+  tableData: any;
+  tableData1: any;
+  private tradingViewWidget: any;
+  private defaultSymbol = "NASDAQ:AAPL"; // Set a default symbol
+
+  constructor(private claimService: ClaimService,) { }
+
+  ngOnInit(): void {
+    this.claimService.getTableData3().subscribe(data => {
+      this.tableData = data;
+      
+    });
+    this.claimService.getTableData9().subscribe(data => {
+      this.tableData1 = data;
+      
+    });
+    
+  }
+
+  ngAfterViewInit(): void {
+    // Load with default symbol
+    this.loadTradingViewWidget(this.defaultSymbol);
+  }
+
+  loadTradingViewWidget(symbol: string): void {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://s3.tradingview.com/tv.js';
+    script.async = true;
+    script.onload = () => this.createTradingViewWidget(symbol);
+    document.head.appendChild(script);
+  }
+
+  createTradingViewWidget(symbol: string): void {
+    if (!this.tradingViewWidget) {
+      // If the widget doesn't exist, create it
+      this.tradingViewWidget = new (window as any).TradingView.widget({
+        "autosize": true,
+        "symbol": symbol,
+        "interval": "D",
+        "timezone": "Etc/UTC",
+        "theme": "light",
+        "style": "1",
+        "locale": "fr",
+        "enable_publishing": true,
+        "allow_symbol_change": true,
+        "container_id": "tradingview_c976b"
+      });
+    } else {
+      // If the widget exists, update the symbol
+      this.tradingViewWidget.chart().setSymbol(symbol);
+    }
+  }
+
+  onSymbolChange(event: any): void {
+    const selectedSymbol = event.target.value;
+
+    // Remove the existing TradingView widget
+    if (this.tradingViewWidget) {
+      this.tradingViewWidget.remove();
+      this.tradingViewWidget = null;
+    }
+
+    // Load a new TradingView widget with the selected symbol
+    this.loadTradingViewWidget(selectedSymbol);
+  }
+  
+}

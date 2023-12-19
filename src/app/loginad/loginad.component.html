@@ -1,0 +1,38 @@
+
+<div class="container" onclick="onclick" >
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="center">
+        
+      <h2 style="color: white;">Admin Sign In</h2>
+      <div  *ngIf="errorMessage" class="error-message"style="color:red;margin-left:10px">
+        {{ errorMessage }}
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <input type="text"
+        ngModel
+        name="userName"
+        id="userName"
+        placeholder="Enter your username"
+        class="form-control mb-3"
+        >
+
+        <input type="password"
+        ngModel
+        name="userPassword"
+        id="userPassword"
+        placeholder="Enter your password"
+        class="form-control mb-3"
+        >
+
+        <input type="submit"
+        value="Login"
+        class="btn btn-outline-primary form-control rounded-0">
+        
+    </form>
+      
+      <h2>&nbsp;</h2>
+      <button><a routerLink="" style="color: black;"> > </a></button>
+    </div>
+    
+  </div>

@@ -1,0 +1,19 @@
+.custom-legend {
+    margin-top: 20px;
+  }
+  
+  .custom-legend ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .custom-legend ul li {
+    margin-bottom: 5px;
+  }
+  
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+  }

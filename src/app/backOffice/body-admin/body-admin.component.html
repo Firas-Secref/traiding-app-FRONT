@@ -1,0 +1,76 @@
+<h2 style="color:#2C3E50 ;">{{ greeting }},{{currentUser?.userName}}</h2>
+<h1 class="mt-4">Dashboard</h1>
+<div class="row">
+
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card  text-white mb-4" style="background-color: #2C3E50;" >
+                            <div class="card-body">Number of total claims</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <div class="small text-white stretched-link" style="margin-left: 90px
+                                ;font-size: 20px;"> {{nbClaims}}</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card  text-white mb-4" style="background-color: grey;" >
+                            <div class="card-body">Number of total users</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <div class="small text-white stretched-link" style="margin-left: 90px
+                                ;font-size: 20px;"> {{nbusers}}</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+</div>
+                <div class="row">
+                    <div class="col-xl-6" style="width: 410px;">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1" style="margin-left: 85px;"></i>
+                                Pie Chart of claim's status
+                            </div>
+                            <div class="card-body"><canvas id="pieChart1" width="100%" height="40"></canvas><br>
+                                <div *ngIf="pieChart1" style="margin-left: 150px
+                                ;">
+                                <div class="custom-legend" >
+                                    <ul>
+                                      <li><span class="legend-dot" style="background-color:green;"></span> Processed: {{ pieChart1.data.datasets[0].data[0]*100 }}%</li>
+
+                                      <li><span class="legend-dot" style="background-color: red;"></span>Unprocessed: {{ pieChart1.data.datasets[0].data[1]*100 }}%</li>
+
+
+
+                                    </ul>
+                                  </div>
+
+                                </div></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6" style="width: 420px;">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar me-1" style="margin-left: 85px;"></i>
+                                Pie Chart of type claims
+                            </div>
+                            <div class="card-body"><canvas id="pieChart" width="100%" height="40"></canvas><br>
+                                <div *ngIf="pieChart" style="margin-left: 150px
+                                ;">
+                                <div class="custom-legend">
+                                    <ul>
+                                      <li><span class="legend-dot" style="background-color:orange;"></span> Transaction: {{ pieChart.data.datasets[0].data[1]*100 }}%</li>
+
+                                      <li><span class="legend-dot" style="background-color: plum;"></span>Account: {{ pieChart.data.datasets[0].data[2]*100 }}%</li>
+
+                                      <li><span class="legend-dot" style="background-color: lightblue ;"></span>Other: {{ pieChart.data.datasets[0].data[0]*100 }}% </li>
+
+                                    </ul>
+                                  </div>
+
+                                </div></div>
+                        </div>
+                    </div>
+
+                </div>

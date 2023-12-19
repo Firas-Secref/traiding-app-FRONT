@@ -1,0 +1,42 @@
+
+    
+<div class="container" onclick="onclick">
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="center">
+        <img src="assets/front/images/default.png" width=60px><br>
+      <h2>Please Sign In</h2>
+      <div  *ngIf="errorMessage" class="error-message"style="color:red;margin-left:10px">
+        {{ errorMessage }}
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <input type="text"
+        ngModel
+        name="userName"
+        id="userName"
+        placeholder="Enter your username"
+        class="form-control mb-3"
+        >
+
+        <input type="password"
+        ngModel
+        name="userPassword"
+        id="userPassword"
+        placeholder="Enter your password"
+        class="form-control mb-3"
+        >
+
+        <input type="submit"
+        value="Login"
+        class="btn btn-outline-primary form-control rounded-0">
+        
+    </form>
+      
+      <h2>&nbsp;</h2>
+      <button><a routerLink="/forgotpassword"> forget password </a></button><br>
+    <button><a routerLink="/signup"> Register now </a></button>
+    <button><a routerLink="/loginadmin" style="color: white;"> > </a></button>
+    </div>
+    
+  </div>
+  

@@ -1,0 +1,85 @@
+<div class="stricky-header stricked-menu main-menu">
+    <div class="sticky-header__content">
+
+        <nav class="main-menu main-menu-style1">
+            <div class="main-menu__wrapper clearfix">
+                <div class="container">
+                    <div class="main-menu__wrapper-inner">
+
+                        <div class="main-menu-style1-left">
+                            <div class="logo-box-style1" style="width: 150px;margin-left: 100px;">
+                                <img src="assets/front/images/default.png" style="height: 90px;width: 150px;"alt="Awesome Logo" title="">
+                            </div>
+
+                            <div class="main-menu-box">
+                                <a href="#" class="mobile-nav__toggler">
+                                    <i class="icon-menu"></i>
+                                </a>
+
+                                <ul class="main-menu__list">
+                                    <li >
+                                        <a routerLink="/user">Home</a>
+
+                                    </li>
+                                    <li class="dropdown">
+                                        <a >Financial News</a>
+                                        <ul>
+                                            <li><a routerLink="/user/news">Commodities</a></li>
+                                            <li><a routerLink="/user/newsCrypto">Cryptocurrencies</a></li>
+                                            <li><a routerLink="/user/newsAction">Equities
+                                            </a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li >
+                                        <a routerLink="/user">Training</a>
+
+                                    </li>
+
+                                    <li class="dropdown">
+                                        <a >Trading</a>
+                                        <ul>
+                                            <li><a routerLink="">Potfolio</a></li>
+                                            <li><a routerLink="/trade" target="_blank">Trade now</a></li>
+
+
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a >Claims</a>
+                                        <ul>
+                                            <li><a routerLink="/user/claims">Consulte my claims</a></li>
+                                            <li><a routerLink="/user/addclaim">Add claim</a></li>
+
+                                        </ul>
+                                    </li>
+
+
+
+                                            <li class="dropdown">
+
+                                                <img alt="Profile Picture" class="circular-image" src="data:image/jpeg;base64,{{currentUser?.userPhoto}}" style="width: 50px;height: 50px;">
+                                               <span style="font-weight: bold;">     {{currentUser?.userName}}</span>
+                                               <ul>
+
+
+
+
+                                              <li><a routerLink="/user/updatepassword">Account settings</a></li>
+                                              <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
+
+                                          </ul>
+
+                                            </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div><!-- /.sticky-header__content -->
+</div>
